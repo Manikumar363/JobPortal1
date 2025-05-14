@@ -1,7 +1,7 @@
 'use client';
 import { Box, Group, TextInput, Select, Text, RangeSlider } from '@mantine/core';
 import { IconSearch, IconMapPin, IconUser } from '@tabler/icons-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 // Custom ellipse divider
 function EllipseDivider() {
@@ -20,7 +20,7 @@ function EllipseDivider() {
 }
 
 // Custom thumb for the slider
-function CustomThumb(props: any) {
+function CustomThumb(props: React.ComponentPropsWithoutRef<'div'>) {
   return (
     <div
       {...props}
@@ -36,6 +36,7 @@ function CustomThumb(props: any) {
         boxShadow: '0 2px 8px 0 rgba(0,0,0,0.08)',
         position: 'relative',
         zIndex: 1,
+        ...props.style,
       }}
     >
       <div
@@ -157,14 +158,14 @@ export default function JobFilters() {
               background: `linear-gradient(to right, #111 0%, #111 ${((salary[0] / 200000) * 100)}%, #e5e1e1 ${((salary[0] / 200000) * 100)}%, #e5e1e1 100%)`,
             },
             bar: { background: '#000' },
+            thumb: {
+              width: 20,
+              height: 20,
+              border: '3px solid #111',
+              backgroundColor: '#fff',
+              boxShadow: '0 2px 8px 0 rgba(0,0,0,0.08)',
+            },
           }}
-          thumbChildren={
-            <>
-              {/* Example custom thumb content */}
-              <Box w={10} h={10} 
-               bg="black" style={{ borderRadius: '50%' }} />
-            </>
-          }
           size="md"
           mt={0}
           mb={0}
